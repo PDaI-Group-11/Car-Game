@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Map
+    uniqueID: 3274112235
+    locked: 0
+  - name: Skidmarks
+    uniqueID: 2290390837
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Car
+    uniqueID: 3723264385
+    locked: 0
+  - name: Smoke Particles
+    uniqueID: 1121030835
     locked: 0

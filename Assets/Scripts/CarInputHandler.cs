@@ -7,6 +7,7 @@ public class CarInputHandler : MonoBehaviour
     CarController carController;
 
 
+
     void Awake()
     {
         carController = GetComponent<CarController>();
@@ -15,7 +16,7 @@ public class CarInputHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,5 +28,23 @@ public class CarInputHandler : MonoBehaviour
         inputVector.y = Input.GetAxis("Vertical");
 
         carController.SetInputVector(inputVector);
+
+        checkBoostInput();
+    }
+
+    private bool isBoostKeyHeld = false;
+
+    void checkBoostInput()
+    {
+        // Check for boost input.
+        if (Input.GetKeyDown(KeyCode.Space) && isBoostKeyHeld == false)
+        {
+            isBoostKeyHeld = true;
+            carController.HandleBoostInput();
+        }
+        else if (Input.GetKeyUp(KeyCode.Space) && isBoostKeyHeld == true)
+        {
+            isBoostKeyHeld = false;
+        }
     }
 }

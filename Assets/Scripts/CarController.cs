@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
@@ -8,22 +9,30 @@ public class CarController : MonoBehaviour
     [Header("Car settings")]
     public float accelerationFactor = 40.0f;
     public float driftFactor = 0.95f;
-    public float turnFactor = 4.5f;
+    public float turnFactor = 6f;
     public float maxSpeed = 20;
 
     float accelerationInput  = 0;
     float steeringInput = 0;
-
     float rotationAngle = 0;
-
     float velocityVsUp = 0;
 
-    Rigidbody2D rigidbody;
+    [Header("Boost settings")]
+    public float boostForce = 2.5f;
+    public float boostDuration = 3f;
+    public float boostCooldown = 5f;
 
+    public bool isBoosting = false;
+    public float boostCooldownTimer = 0f;
+    private float boostDurationTimer = 0f;
+
+    Rigidbody2D rigidbody;
+    
 
     void Awake()
     {
-         rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
+
     }
 
     // Start is called before the first frame update
@@ -45,6 +54,10 @@ public class CarController : MonoBehaviour
         KillSideVelocity();
 
         ApplySteering();
+
+
+        // Decrease boostCooldownTimer by the time that has passed.
+        boostCooldownTimer -= Time.fixedDeltaTime;
     }
 
     void ApplyEngineForce()
@@ -102,4 +115,65 @@ public class CarController : MonoBehaviour
         rigidbody.velocity = forwardVelocity + rightVelocity * driftFactor;
     }
 
+    float getLateralVelocity()
+    {
+        // Returns how fast the car is moving sideways.
+        return Vector2.Dot(transform.right, rigidbody.velocity);
+    }
+
+    public bool IsTireScreeching(out float lateralVelocity, out bool isBraking)
+    {
+        lateralVelocity = getLateralVelocity();
+        isBraking = false;
+
+        // If the player is braking and the car is going forwards return true 
+        if (accelerationInput < 0 && velocityVsUp > 0) 
+        {
+            isBraking = true;
+            return true;
+        }
+
+        // If the car has alot of side movement return true
+        if (Mathf.Abs(getLateralVelocity()) >  4.0f)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public float GetVelocityMagnitude()
+    {
+        return rigidbody.velocity.magnitude * 3;
+    }
+
+    private void StartBoost()
+    {
+        isBoosting = true;
+
+        // Apply a boost force in the direction of the car's forward vector.
+        rigidbody.AddForce(transform.up * boostForce, ForceMode2D.Impulse);
+
+        // Set the boost duration and cooldown timers.
+        boostDurationTimer = boostDuration;
+        boostCooldownTimer = boostCooldown;
+
+        StartCoroutine(StopBoost());
+
+    } 
+
+    IEnumerator StopBoost()
+    {
+        yield return new WaitForSeconds(0.1f); // Delay for 1 seconds
+        isBoosting = false;
+    }
+
+    public void HandleBoostInput()
+    {
+        // Check if the car is allowed to boost (not currently boosting and boost not on cooldown).
+        if (!isBoosting && boostCooldownTimer <= 0)
+        {
+            StartBoost();
+        }
+    }
 }
