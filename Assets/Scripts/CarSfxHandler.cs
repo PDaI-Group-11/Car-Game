@@ -92,8 +92,6 @@ public class CarSfxHandler : MonoBehaviour
 
         float volume = relativeVelocity * 0.1f;
 
-        //carHitAudioSource.pitch = Random.Range(0.95f, 1.05f
-        //carHitAudioSource.pitch = Unity.Mathematics.Random.Range(0.95f, 1.05f);
         carHitAudioSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
 
         carHitAudioSource.volume = volume;
