@@ -104,7 +104,6 @@ public class CarSfxHandler : MonoBehaviour
 
     }
 
-    private bool hasBoostSoundPlayed = false;
 
     void CheckForBoostAudioSFX()
     {
