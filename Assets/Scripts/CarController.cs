@@ -10,9 +10,9 @@ public class CarController : MonoBehaviour
     public float accelerationFactor = 40.0f;
     public float driftFactor = 0.95f;
     public float turnFactor = 6f;
-    public float maxSpeed = 20;
+    public float maxSpeed = 10;
 
-    float accelerationInput  = 0;
+    float accelerationInput = 0;
     float steeringInput = 0;
     float rotationAngle = 0;
     float velocityVsUp = 0;
@@ -21,30 +21,20 @@ public class CarController : MonoBehaviour
     public float boostForce = 2.5f;
     public float boostDuration = 3f;
     public float boostCooldown = 5f;
-
     public bool isBoosting = false;
     public float boostCooldownTimer = 0f;
     private float boostDurationTimer = 0f;
 
-    Rigidbody2D rigidbody;
-    
+    // Oil factors
+    private float originalDriftFactor;
+    public bool isOnOil = false;
+
+    Rigidbody2D carRigidbody;
+
 
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        carRigidbody = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
@@ -55,14 +45,22 @@ public class CarController : MonoBehaviour
 
         ApplySteering();
 
-
         // Decrease boostCooldownTimer by the time that has passed.
         boostCooldownTimer -= Time.fixedDeltaTime;
     }
 
     void ApplyEngineForce()
     {
-        velocityVsUp = Vector2.Dot(transform.up, rigidbody.velocity);
+        if (accelerationInput == 0)
+        {
+            carRigidbody.drag = Mathf.Lerp(carRigidbody.drag, 3.0f, Time.fixedDeltaTime * 3);
+        }
+        else
+        {
+            carRigidbody.drag = 0;
+        }
+
+        velocityVsUp = Vector2.Dot(transform.up, carRigidbody.velocity);
 
         // Limit the max speed
         if (velocityVsUp > maxSpeed && accelerationInput > 0)
@@ -71,54 +69,51 @@ public class CarController : MonoBehaviour
         // Limit the max speed backwards to 50%
         if (velocityVsUp < -maxSpeed * 0.5 && accelerationInput > 0)
             return;
-        
+
         // Limit for speed to any direction while accelerating
-        if (rigidbody.velocity.sqrMagnitude > maxSpeed * maxSpeed && accelerationInput > 0 ) 
+        if (carRigidbody.velocity.sqrMagnitude > maxSpeed * maxSpeed && accelerationInput > 0)
             return;
 
-
-        if (accelerationInput == 0)
-        {
-            rigidbody.drag = Mathf.Lerp(rigidbody.drag, 3.0f, Time.fixedDeltaTime * 3);
-        }
-        else
-        {
-            rigidbody.drag = 0;
-        }
-
         Vector2 engineForceVector = transform.up * accelerationInput * turnFactor;
-        rigidbody.AddForce(engineForceVector,ForceMode2D.Force);
+        carRigidbody.AddForce(engineForceVector, ForceMode2D.Force);
     }
 
     void ApplySteering()
     {
 
-        float minSpeedBeforeAllowTurningFactor = (rigidbody.velocity.magnitude / 8);
+        float minSpeedBeforeAllowTurningFactor = (carRigidbody.velocity.magnitude / 8);
         minSpeedBeforeAllowTurningFactor = Mathf.Clamp01(minSpeedBeforeAllowTurningFactor);
 
-
         rotationAngle -= steeringInput * turnFactor * minSpeedBeforeAllowTurningFactor;
-        rigidbody.MoveRotation(rotationAngle);
+        carRigidbody.MoveRotation(rotationAngle);
     }
 
     public void SetInputVector(Vector2 inputVector)
     {
         steeringInput = inputVector.x;
         accelerationInput = inputVector.y;
+        accelerationInput = inputVector.y;
     }
 
     public void KillSideVelocity()
     {
-        Vector2 forwardVelocity = transform.up * Vector2.Dot(rigidbody.velocity, transform.up);
-        Vector2 rightVelocity = transform.right * Vector2.Dot(rigidbody.velocity, transform.right);
+        Vector2 forwardVelocity = transform.up * Vector2.Dot(carRigidbody.velocity, transform.up);
+        Vector2 rightVelocity = transform.right * Vector2.Dot(carRigidbody.velocity, transform.right);
 
-        rigidbody.velocity = forwardVelocity + rightVelocity * driftFactor;
+        float currentDriftFactor = driftFactor;
+
+        if (isOnOil)
+        {
+            currentDriftFactor = 1;
+        }
+
+        carRigidbody.velocity = forwardVelocity + rightVelocity * currentDriftFactor;
     }
 
     float getLateralVelocity()
     {
         // Returns how fast the car is moving sideways.
-        return Vector2.Dot(transform.right, rigidbody.velocity);
+        return Vector2.Dot(transform.right, carRigidbody.velocity);
     }
 
     public bool IsTireScreeching(out float lateralVelocity, out bool isBraking)
@@ -127,14 +122,14 @@ public class CarController : MonoBehaviour
         isBraking = false;
 
         // If the player is braking and the car is going forwards return true 
-        if (accelerationInput < 0 && velocityVsUp > 0) 
+        if (accelerationInput < 0 && velocityVsUp > 0)
         {
             isBraking = true;
             return true;
         }
 
         // If the car has alot of side movement return true
-        if (Mathf.Abs(getLateralVelocity()) >  4.0f)
+        if (Mathf.Abs(getLateralVelocity()) > 4.0f)
         {
             return true;
         }
@@ -144,7 +139,7 @@ public class CarController : MonoBehaviour
 
     public float GetVelocityMagnitude()
     {
-        return rigidbody.velocity.magnitude * 3;
+        return carRigidbody.velocity.magnitude * 3;
     }
 
     private void StartBoost()
@@ -152,7 +147,7 @@ public class CarController : MonoBehaviour
         isBoosting = true;
 
         // Apply a boost force in the direction of the car's forward vector.
-        rigidbody.AddForce(transform.up * boostForce, ForceMode2D.Impulse);
+        carRigidbody.AddForce(transform.up * boostForce, ForceMode2D.Impulse);
 
         // Set the boost duration and cooldown timers.
         boostDurationTimer = boostDuration;
@@ -160,7 +155,7 @@ public class CarController : MonoBehaviour
 
         StartCoroutine(StopBoost());
 
-    } 
+    }
 
     IEnumerator StopBoost()
     {
@@ -175,5 +170,24 @@ public class CarController : MonoBehaviour
         {
             StartBoost();
         }
+    }
+
+    public void ApplySteeringEffect(float factor, float duration)
+    {
+        originalDriftFactor = driftFactor; // Store the original drift factor
+        driftFactor *= factor;
+        isOnOil = true;
+
+        // Reset the steering effects after a certain time
+        StartCoroutine(ResetSteeringEffects(duration));
+    }
+
+    IEnumerator ResetSteeringEffects(float duration)
+    {
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        driftFactor = originalDriftFactor;
+        isOnOil = false;
     }
 }

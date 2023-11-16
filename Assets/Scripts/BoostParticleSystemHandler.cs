@@ -33,7 +33,6 @@ public class BoostParticleSystemHandler : MonoBehaviour
         // && carController.boostCooldownTimer <= 0
         if (carController.isBoosting == true )
         {
-            Debug.Log("Boosting!");
             particleEmissionRate = 200;
         }
         else if (carController.isBoosting == false)
