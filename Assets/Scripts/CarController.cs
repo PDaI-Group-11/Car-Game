@@ -37,7 +37,7 @@ public class CarController : MonoBehaviour
         carRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         ApplyEngineForce();
 
