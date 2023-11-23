@@ -6,17 +6,9 @@ public class CarInputHandler : MonoBehaviour
 {
     CarController carController;
 
-
-
     void Awake()
     {
         carController = GetComponent<CarController>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     // Update is called once per frame

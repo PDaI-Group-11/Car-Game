@@ -11,6 +11,8 @@ TagManager:
   - HealthCollect
   - Car
   - TrackSection
+  - Obstacle
+  - FinishLine
   layers:
   - Default
   - TransparentFX
@@ -47,4 +49,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 1749495563
+    locked: 0
+  - name: road
+    uniqueID: 1369932649
+    locked: 0
+  - name: building
+    uniqueID: 2489339339
+    locked: 0
+  - name: car
+    uniqueID: 2880868583
     locked: 0

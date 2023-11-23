@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3141417798442298197
+--- !u!1 &4008006067833117503
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8460233543792308719}
-  - component: {fileID: 1807183545467044648}
-  - component: {fileID: 2623843985531605912}
-  - component: {fileID: 4987913843410472314}
+  - component: {fileID: 5885172168198577259}
+  - component: {fileID: 2507714169852089285}
+  - component: {fileID: 8576890851326175430}
+  - component: {fileID: 4402371873934381304}
   m_Layer: 0
-  m_Name: FinishLine
-  m_TagString: FinishLine
+  m_Name: WayPointTimerObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8460233543792308719
+--- !u!4 &5885172168198577259
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3141417798442298197}
+  m_GameObject: {fileID: 4008006067833117503}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.7066198, w: 0.7075935}
-  m_LocalPosition: {x: -0.32, y: -3.23, z: 0}
-  m_LocalScale: {x: 0.6854144, y: -0.25761512, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.04, y: 8.47, z: 10}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.921}
---- !u!212 &1807183545467044648
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2507714169852089285
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3141417798442298197}
+  m_GameObject: {fileID: 4008006067833117503}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,27 +72,28 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1805627957
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2901961}
+  m_Sprite: {fileID: -315583168644363856, guid: 2529f58c0f0f4784d925363eac539680,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 4.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2623843985531605912
-BoxCollider2D:
+--- !u!60 &8576890851326175430
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3141417798442298197}
+  m_GameObject: {fileID: 4008006067833117503}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -122,24 +123,31 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 4.125}
+    newSize: {x: 3, y: 4.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.94, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &4987913843410472314
+  m_Points:
+    m_Paths:
+    - - {x: -1.5, y: 2.0625}
+      - {x: -1.5, y: -1.6875}
+      - {x: -1.375, y: -2.0625}
+      - {x: 0.9375, y: -2.0625}
+      - {x: 1.5, y: 0.375}
+      - {x: 1.5, y: 2.0625}
+  m_UseDelaunayMesh: 0
+--- !u!114 &4402371873934381304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3141417798442298197}
+  m_GameObject: {fileID: 4008006067833117503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89dc6fffb51a6f34ea09f800a3328fa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5204f227a164d2a4595e5258e8668184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToAdd: 5

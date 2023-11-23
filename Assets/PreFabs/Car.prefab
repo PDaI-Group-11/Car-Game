@@ -41,7 +41,8 @@ AudioSource:
   m_GameObject: {fileID: 357980309592128717}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3930995039723321445, guid: d7758c1cbbcec1c41805f076739609e5, type: 2}
+  OutputAudioMixerGroup: {fileID: -3930995039723321445, guid: d7758c1cbbcec1c41805f076739609e5,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 977e3e8a1476a774896f0c81d4475100, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -201,7 +202,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2004576459
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 15
   m_PreviewTimeScale: 1
@@ -5092,7 +5093,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1121030835
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -5211,7 +5212,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2004576459
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 15
   m_PreviewTimeScale: 1
@@ -5360,7 +5361,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2004576459
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 15
   m_PreviewTimeScale: 1
@@ -5477,7 +5478,8 @@ AudioSource:
   m_GameObject: {fileID: 2313740279445933949}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -753625792810710045, guid: d7758c1cbbcec1c41805f076739609e5, type: 2}
+  OutputAudioMixerGroup: {fileID: -753625792810710045, guid: d7758c1cbbcec1c41805f076739609e5,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 36bb4e634c4ae1c45a8fc1e767736c39, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -5640,8 +5642,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -571702911
-  m_SortingLayer: 1
+  m_SortingLayerID: -1414098713
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5839,7 +5841,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2004576459
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 15
   m_PreviewTimeScale: 1
@@ -5956,7 +5958,8 @@ AudioSource:
   m_GameObject: {fileID: 6354434928940448133}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 8698092291099646984, guid: d7758c1cbbcec1c41805f076739609e5, type: 2}
+  OutputAudioMixerGroup: {fileID: 8698092291099646984, guid: d7758c1cbbcec1c41805f076739609e5,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 5976b5dbf5e303f4fbc129ed5eb22223, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -6124,7 +6127,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3079434808264247364, guid: 2529f58c0f0f4784d925363eac539680, type: 3}
+  m_Sprite: {fileID: 3079434808264247364, guid: 2529f58c0f0f4784d925363eac539680,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -11071,7 +11075,8 @@ AudioSource:
   m_GameObject: {fileID: 7327107317382624788}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -318539803652367318, guid: d7758c1cbbcec1c41805f076739609e5, type: 2}
+  OutputAudioMixerGroup: {fileID: -318539803652367318, guid: d7758c1cbbcec1c41805f076739609e5,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 7e0ac38c71d235545b42f1d155517b4b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -15973,7 +15978,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1121030835
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
