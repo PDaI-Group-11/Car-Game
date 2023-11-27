@@ -6,11 +6,12 @@ using UnityEngine;
 public class CarCollision : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public HealthManager healthManager;
     [SerializeField] float collisionThreshold; 
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        healthManager = GetComponent<HealthManager>();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -20,14 +21,12 @@ public class CarCollision : MonoBehaviour
         {
             // Check the velocity of the car using its Rigidbody component
             float velocityMagnitude = rb.velocity.magnitude;
-           
-
             // If the velocity is above the threshold, destroy the car object
             if (velocityMagnitude > collisionThreshold)
             {
-                
-                Destroy(this.gameObject);
-                Debug.Log("Car destroyed due to collision!");
+
+                healthManager.TakeDamage(10);
+                Debug.Log("I took 10 damage");
             }
             Debug.Log("Car destroyed due to collision!");
         }

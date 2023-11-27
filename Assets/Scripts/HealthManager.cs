@@ -5,25 +5,32 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] float maxHealth;
+    [SerializeField] GameObject Healthinstaniate;
+    public float maxHealth = 100;
     public float currentHealth;
-
 
     void Start()
     {
-        maxHealth = 100;
+        currentHealth = maxHealth;
+        HealthBarGenerator();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
+  public void TakeDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+    }
+
+    void HealthBarGenerator()
+    {
+        if (Healthinstaniate != null) 
+        { 
+         GameObject healthinstan = Instantiate(Healthinstaniate);
         
-    }
-
-  public void TakeDamage(float currentHealth)
-    {
-        currentHealth = currentHealth - 10;
-       
+        }
+        else
+        {
+            Debug.Log("Prefab not assigned to Inspector.");
+        }
     }
 }
