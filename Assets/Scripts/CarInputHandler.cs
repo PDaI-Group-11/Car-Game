@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class CarInputHandler : MonoBehaviour
 {
+    private bool isBoostKeyHeld = false;
+    private bool isMapKeyHeld = false;
+
+
+    public Canvas mapCanvas;
     CarController carController;
 
     void Awake()
     {
         carController = GetComponent<CarController>();
+
+        if (mapCanvas != null)
+            mapCanvas.enabled = false;
     }
 
     // Update is called once per frame
@@ -22,9 +30,8 @@ public class CarInputHandler : MonoBehaviour
         carController.SetInputVector(inputVector);
 
         checkBoostInput();
+        checkMapInput();
     }
-
-    private bool isBoostKeyHeld = false;
 
     void checkBoostInput()
     {
@@ -37,6 +44,24 @@ public class CarInputHandler : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space) && isBoostKeyHeld == true)
         {
             isBoostKeyHeld = false;
+        }
+    }
+
+    void checkMapInput()
+    {
+        if (Input.GetKeyDown(KeyCode.M) && isMapKeyHeld == false)
+        {
+            isMapKeyHeld = true;
+
+            if (mapCanvas != null)
+                mapCanvas.enabled = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.M) && isMapKeyHeld == true)
+        {
+            isMapKeyHeld = false;
+
+            if (mapCanvas != null)
+                mapCanvas.enabled = false;
         }
     }
 }

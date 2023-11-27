@@ -47,18 +47,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1749495563
+    locked: 0
+  - name: Trees
+    uniqueID: 3806192851
+    locked: 0
+  - name: Road
+    uniqueID: 1369932649
+    locked: 0
+  - name: Obstacles
+    uniqueID: 2489339339
+    locked: 0
+  - name: Hazards
+    uniqueID: 439102237
+    locked: 0
+  - name: Car
+    uniqueID: 2880868583
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: background
-    uniqueID: 1749495563
-    locked: 0
-  - name: road
-    uniqueID: 1369932649
-    locked: 0
-  - name: building
-    uniqueID: 2489339339
-    locked: 0
-  - name: car
-    uniqueID: 2880868583
+  - name: 
+    uniqueID: 1034194657
     locked: 0
