@@ -50,11 +50,17 @@ TagManager:
   - name: Background
     uniqueID: 1749495563
     locked: 0
+  - name: Mountains and lakes
+    uniqueID: 1034194657
+    locked: 0
   - name: Trees
     uniqueID: 3806192851
     locked: 0
   - name: Road
     uniqueID: 1369932649
+    locked: 0
+  - name: Bridge
+    uniqueID: 2584289043
     locked: 0
   - name: Obstacles
     uniqueID: 2489339339
@@ -67,7 +73,4 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: 
-    uniqueID: 1034194657
     locked: 0
