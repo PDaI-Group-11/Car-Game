@@ -11,7 +11,9 @@ public class Timer : MonoBehaviour
     public float twoStarTime = 8.0f;    // 8 seconds
     public float threeStarTime = 5.0f;  // 5 seconds
     public float initialCountDownTime = 5.0f; // 5 seconds countdown at the start
-    private float countdownTime;
+
+    [HideInInspector]
+    public float countdownTime;
 
     [SerializeField] TextMeshProUGUI timerText;
     float remainingTime;

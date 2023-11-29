@@ -249,10 +249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46437e33843f3c54a92c89713ea5a95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialTime: 30
+  initialTime: 5
   oneStarTime: 10
   twoStarTime: 8
   threeStarTime: 5
   initialCountDownTime: 5
+  countdownTime: 0
   timerText: {fileID: 4086034119984024004}
   isCounting: 1

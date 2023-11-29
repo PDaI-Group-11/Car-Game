@@ -1508,10 +1508,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1958ff14c2f9c664592298bce4adbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star1: {fileID: 4708769999488344715}
-  star2: {fileID: 2229908756190902075}
-  star3: {fileID: 8715887686560153098}
-  menuCanvasGroup: {fileID: 0}
   TimeText: {fileID: 3092922864403958085}
 --- !u!1 &6501233336330909561
 GameObject:
@@ -1560,10 +1556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1958ff14c2f9c664592298bce4adbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star1: {fileID: 4708769999488344715}
-  star2: {fileID: 2229908756190902075}
-  star3: {fileID: 8715887686560153098}
-  menuCanvasGroup: {fileID: 0}
   TimeText: {fileID: 3092922864403958085}
 --- !u!1 &7455244538858773573
 GameObject:
@@ -1577,7 +1569,7 @@ GameObject:
   - component: {fileID: 5685733036663004863}
   - component: {fileID: 3092922864403958085}
   m_Layer: 5
-  m_Name: Time Text
+  m_Name: Time Text (game over)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

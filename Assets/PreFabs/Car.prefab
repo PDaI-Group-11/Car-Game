@@ -5691,7 +5691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38ebd0593125774793c1a376852ea23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapCanvas: {fileID: 0}
 --- !u!50 &8512418924828558257
 Rigidbody2D:
   serializedVersion: 4

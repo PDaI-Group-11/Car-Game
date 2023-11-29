@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class GameOverTrigger : MonoBehaviour
 {
-    public Image star1;
-    public Image star2;
-    public Image star3;
+    private Image star1;
+    private Image star2;
+    private Image star3;
 
-    public CanvasGroup menuCanvasGroup;
-    public TMP_Text TimeText;
+    private CanvasGroup menuCanvasGroup;
+    public TMP_Text TimeTextGameOver;
 
     Timer timer;
     WaypointManagerScript waypointManager;
@@ -22,6 +22,13 @@ public class GameOverTrigger : MonoBehaviour
     {
         timer = FindObjectOfType<Timer>();
         waypointManager = FindObjectOfType<WaypointManagerScript>();
+
+        star1 = GameObject.Find("Star1")?.GetComponent<Image>();
+        star2 = GameObject.Find("Star2")?.GetComponent<Image>();
+        star3 = GameObject.Find("Star3")?.GetComponent<Image>();
+        if (star1 == null || star2 == null || star2 == null)
+            Debug.Log("Some of the stars images are not found");
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,7 +45,7 @@ public class GameOverTrigger : MonoBehaviour
         ShowStars();
         PauseGame();
 
-        CanvasGroup menuCanvasGroup = FindObjectOfType<CanvasGroup>();
+        CanvasGroup menuCanvasGroup = FindObjectOfType<CanvasGroup>();                         
 
         // Show the menu
         if (menuCanvasGroup != null)
@@ -57,15 +64,15 @@ public class GameOverTrigger : MonoBehaviour
     {
         if (timer != null)
         {
-            if (TimeText != null)
+            if (TimeTextGameOver != null)
             {
                 // Get the formatted time from the Timer script and update the time text in the ending menu.
                 string formattedTime = timer.GetFormattedTime();
-                TimeText.text = formattedTime;
+                TimeTextGameOver.text = formattedTime;
             }
             else
             {
-                Debug.LogError("TimeText is null");
+                Debug.LogError("TimeTextGameOver is null");
             }
         }
     }
