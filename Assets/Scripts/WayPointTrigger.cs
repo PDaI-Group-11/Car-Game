@@ -19,14 +19,31 @@ public class WayPointTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!hasBeenUsed && other.CompareTag("Car") && timer.isCounting == true)
+        if (timer != null)
+        {
+            if (!hasBeenUsed && other.CompareTag("Car") && timer.isCounting == true)
+            {
+                toggleCarHasTheBomb();
+                timer.AddTime(timeToAdd);
+                hasBeenUsed = true;
+                // Notify the manager that this waypoint has been used
+                FindObjectOfType<WaypointManagerScript>().WaypointUsed(this);
+            }
+        }
+        else
+            Debug.Log("timer is null, Is timer present?");
+    }
+
+    private void toggleCarHasTheBomb()
+    {
+        if (explosionParticleHandler != null)
         {
             // Invert the current value of carHasTheBomb
             explosionParticleHandler.carHasTheBomb = !explosionParticleHandler.carHasTheBomb;
-            timer.AddTime(timeToAdd);
-            hasBeenUsed = true;
-            // Notify the manager that this waypoint has been used
-            FindObjectOfType<WaypointManagerScript>().WaypointUsed(this);
+        }
+        else
+        {
+            Debug.Log("explosionParticleHandler is null");
         }
     }
 }

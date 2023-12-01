@@ -57,8 +57,12 @@ public class PauseMenuHandler : MonoBehaviour
     public void PauseGame()
     {
         StopSounds();
-        if (timer.countdownTime <= 0)
-            UpdateTimerText();
+        if (timer != null)
+        {
+            if (timer.countdownTime <= 0)
+                UpdateTimerText();
+            
+        }
         Time.timeScale = 0;
     }
 

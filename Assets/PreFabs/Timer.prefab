@@ -253,7 +253,7 @@ MonoBehaviour:
   oneStarTime: 10
   twoStarTime: 8
   threeStarTime: 5
-  initialCountDownTime: 5
+  initialCountDownTime: 3
   countdownTime: 0
   timerText: {fileID: 4086034119984024004}
   isCounting: 1

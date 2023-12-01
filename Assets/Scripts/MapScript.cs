@@ -15,7 +15,10 @@ public class MapScript : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector2 newPosition = car.position;
-        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+        if (car != null)
+        {
+            Vector2 newPosition = car.position;
+            transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+        }
     }
 }

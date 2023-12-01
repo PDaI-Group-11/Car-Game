@@ -35,10 +35,13 @@ public class GameOverTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Car") && timer.isCounting && waypointManager.AllWaypointsUsed())
-        {
-            DisplayMenu();
+        if (timer != null && waypointManager != null) { 
+            if (other.CompareTag("Car") && timer.isCounting && waypointManager.AllWaypointsUsed())
+            {
+                DisplayMenu();
+            }
         }
+        else Debug.Log("timer or waypointManager is null, Are they present?");
     }
 
     public void DisplayMenu()

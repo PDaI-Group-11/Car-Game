@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ExplosionParticleHandler : MonoBehaviour
 {
     private bool hasExploded = false;
-
     public bool carHasTheBomb = false;
 
-
     private AudioSource ExplosionAudioSource;
-
     private ParticleSystem explosionParticles;
     private CarSfxHandler carSfxHandler;
     private GameObject car;
     private CarController carController;
+    private SpriteRenderer C4spriteRenderer;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -24,7 +24,8 @@ public class ExplosionParticleHandler : MonoBehaviour
         explosionParticles = GetComponent<ParticleSystem>();
         carSfxHandler = FindObjectOfType<CarSfxHandler>();
         carController = FindObjectOfType<CarController>();
-
+        GameObject c4Object = GameObject.Find("C4Sprite");
+        C4spriteRenderer = c4Object.GetComponent<SpriteRenderer>();
 
         car = GameObject.Find("Car");
 
@@ -35,10 +36,32 @@ public class ExplosionParticleHandler : MonoBehaviour
         {
             Debug.Log("Explosion Particle System is not assigned!");
         }
-
     }
 
-    // Function to trigger the explosion
+    private void Update()
+    {
+        CheckForBomb();
+    }
+
+    void CheckForBomb()
+    {
+        if (C4spriteRenderer != null && carHasTheBomb && !carController.isCarDestroyed)
+        {
+            C4spriteRenderer.enabled = true;
+        }
+        else if (C4spriteRenderer != null && !carHasTheBomb && !carController.isCarDestroyed)
+        {
+            C4spriteRenderer.enabled = false;
+        }
+        else if (C4spriteRenderer != null && carHasTheBomb && carController.isCarDestroyed)
+        {
+            C4spriteRenderer.enabled = false;
+        }
+        else Debug.Log("C4spriteRenderer is null");
+    }
+
+
+
     public void Explode()
     {
         // Check if the Particle System is assigned
@@ -55,8 +78,9 @@ public class ExplosionParticleHandler : MonoBehaviour
 
             DisableCar();
 
-            // Destroy the car after a delay (adjust this delay as needed)
+            // Destroy the car after a delay
             Destroy(car, 3f);
+
         }
     }
 

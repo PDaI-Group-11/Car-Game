@@ -199,6 +199,7 @@ public class CarController : MonoBehaviour
 
     public void stopTheCar()
     {
+        
         isCarDestroyed = true;
 
         // Check for Renderer
