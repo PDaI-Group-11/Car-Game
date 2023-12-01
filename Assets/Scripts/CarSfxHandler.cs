@@ -11,6 +11,7 @@ public class CarSfxHandler : MonoBehaviour
     public AudioSource engineAudioSource;
     public AudioSource carHitAudioSource;
     public AudioSource carBoostAudioSource;
+    public AudioSource ExplosionAudioSource;
 
     float desiredEnginePitch = 0.5f;
     float tireScreechPitch = 0.5f;
@@ -105,8 +106,61 @@ public class CarSfxHandler : MonoBehaviour
         if (carController.isBoosting && !carBoostAudioSource.isPlaying)
         {
             carBoostAudioSource.Play();
-            
         }
     }
-    
+
+    public void playExplosionSoundSFX()
+    {
+        // Check if the AudioSource and explosion clip are set
+        if (ExplosionAudioSource != null)
+        {
+            // Play the explosion sound
+            ExplosionAudioSource.Play();
+        }
+        else
+        {
+            Debug.LogError("ExplosionAudioSource not set");
+        }
+    }
+
+    public void PauseSounds()
+    {
+        // Stop all audio
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.Pause();
+        }
+    }
+
+    public void UnpauseSounds()
+    {
+        // Stop all audio
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.Play();
+        }
+    }
+
+
+    private void MuteSounds()
+    {
+        // Stop all audio
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.mute = true;
+        }
+    }
+
+    private void UnMuteSounds()
+    {
+        // Resume audio
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.mute = false;
+        }
+    }
 }

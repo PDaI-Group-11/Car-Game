@@ -17,6 +17,9 @@ public class CarController : MonoBehaviour
     float rotationAngle = 0;
     float velocityVsUp = 0;
 
+    [HideInInspector]
+    public bool isCarDestroyed = false;
+
     [Header("Boost settings")]
     public float boostForce = 2.5f;
     public float boostDuration = 3f;
@@ -39,11 +42,14 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ApplyEngineForce();
+        if (!isCarDestroyed)
+        {
+            ApplyEngineForce();
 
-        KillSideVelocity();
+            KillSideVelocity();
 
-        ApplySteering();
+            ApplySteering();
+        }
 
         // Decrease boostCooldownTimer by the time that has passed.
         boostCooldownTimer -= Time.fixedDeltaTime;
@@ -189,5 +195,34 @@ public class CarController : MonoBehaviour
 
         driftFactor = originalDriftFactor;
         isOnOil = false;
+    }
+
+    public void stopTheCar()
+    {
+        isCarDestroyed = true;
+
+        // Check for Renderer
+        Renderer carRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (carRenderer != null)
+        {
+            carRenderer.enabled = false;
+        }
+        else
+        {
+            Debug.LogError("Renderer not found on GameObject: " + gameObject.name);
+        }
+
+        // Check for PolygonCollider2D
+        PolygonCollider2D carCollider = GetComponentInChildren<PolygonCollider2D>();
+        if (carCollider != null)
+        {
+            carCollider.enabled = false;
+        }
+        else
+        {
+            Debug.LogError("PolygonCollider2D not found on GameObject: " + gameObject.name);
+        }
+
+        carRigidbody.velocity = Vector2.zero;
     }
 }

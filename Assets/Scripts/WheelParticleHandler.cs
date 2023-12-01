@@ -13,7 +13,7 @@ public class WheelParticleHandler : MonoBehaviour
 
     private void Awake()
     {
-        //carController = GetComponent<CarController>();
+        
 
         carController = GetComponentInParent<CarController>();
         particleSystem = GetComponent<ParticleSystem>();
@@ -22,11 +22,6 @@ public class WheelParticleHandler : MonoBehaviour
         emissionModule.rateOverTime = 0;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -36,7 +31,7 @@ public class WheelParticleHandler : MonoBehaviour
         emissionModule.rateOverTime = particleEmissionRate;
 
 
-        if (carController.IsTireScreeching(out float lateralVelocity, out bool isBraking))
+        if (carController.IsTireScreeching(out float lateralVelocity, out bool isBraking) && !carController.isCarDestroyed)
         {
             // If the player is braking, emitt a lot of smoke
             if (isBraking)
@@ -51,4 +46,3 @@ public class WheelParticleHandler : MonoBehaviour
 
     }
 }
-//

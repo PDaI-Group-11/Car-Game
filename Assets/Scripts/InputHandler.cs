@@ -19,7 +19,7 @@ public class InputHandler : MonoBehaviour
         carController = GetComponent<CarController>();
         pauseMenuHandler = FindObjectOfType<PauseMenuHandler>();
         if (pauseMenuHandler == null)
-            Debug.Log("pauseMenuHandler not found");
+            Debug.Log("pauseMenuHandler not found, Is Pause Menu Canvas present");
 
 
 

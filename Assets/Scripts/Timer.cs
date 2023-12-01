@@ -20,12 +20,14 @@ public class Timer : MonoBehaviour
     public bool isCounting = false;
 
     GameOverTrigger gameOverTrigger;
+    ExplosionParticleHandler explosionParticleHandler;
 
 
     private void Awake()
     {
         Time.timeScale = 1;
         gameOverTrigger = FindObjectOfType<GameOverTrigger>();
+        explosionParticleHandler = FindObjectOfType<ExplosionParticleHandler>();
         remainingTime = initialTime;
         countdownTime = initialCountDownTime;
     }
@@ -52,7 +54,16 @@ public class Timer : MonoBehaviour
                 remainingTime = 0;
                 isCounting = false;
 
-                gameOverTrigger.DisplayMenu();
+                if (explosionParticleHandler.carHasTheBomb)
+                {
+                    explosionParticleHandler.Explode();
+                    // Delay the call to DisplayMenu by 2 seconds
+                    Invoke("ShowMenu", 3f);
+                }
+                else ShowMenu();
+
+
+
             }
             else
             {
@@ -64,6 +75,16 @@ public class Timer : MonoBehaviour
             timerText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
         }
     }
+
+    private void ShowMenu()
+    {
+        if (gameOverTrigger != null)
+        {
+            gameOverTrigger.DisplayMenu();
+        }
+        else Debug.Log("gameOverTrigger = null, Is gameOverCanvas present?");
+    }
+
 
     public void RestartTimer()
     {
@@ -114,7 +135,6 @@ public class Timer : MonoBehaviour
 
     public float GetremainingTime()
     {
-        // Return the elapsed time in seconds.
         return remainingTime;
     }
 

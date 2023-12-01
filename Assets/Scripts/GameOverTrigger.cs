@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Xml;
 
 public class GameOverTrigger : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GameOverTrigger : MonoBehaviour
     private Image star3;
 
     private CanvasGroup menuCanvasGroup;
-    public TMP_Text TimeTextGameOver;
+    private TMP_Text TimeTextGameOver;
 
     Timer timer;
     WaypointManagerScript waypointManager;
@@ -23,12 +24,13 @@ public class GameOverTrigger : MonoBehaviour
         timer = FindObjectOfType<Timer>();
         waypointManager = FindObjectOfType<WaypointManagerScript>();
 
+        TimeTextGameOver = GameObject.Find("Time Text (game over)").GetComponent<TextMeshProUGUI>();
+
         star1 = GameObject.Find("Star1")?.GetComponent<Image>();
         star2 = GameObject.Find("Star2")?.GetComponent<Image>();
         star3 = GameObject.Find("Star3")?.GetComponent<Image>();
         if (star1 == null || star2 == null || star2 == null)
             Debug.Log("Some of the stars images are not found");
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -72,7 +74,7 @@ public class GameOverTrigger : MonoBehaviour
             }
             else
             {
-                Debug.LogError("TimeTextGameOver is null");
+                Debug.Log("TimeTextGameOver is null");
             }
         }
     }
@@ -137,12 +139,7 @@ public class GameOverTrigger : MonoBehaviour
 
     private void StopSounds()
     {
-        // Stop all audio
-        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
-        foreach (AudioSource audioSource in allAudioSources)
-        {
-            audioSource.Stop();
-        }
+        PauseSounds();
     }
 
     public void ResumeGame()
@@ -153,8 +150,15 @@ public class GameOverTrigger : MonoBehaviour
         Time.timeScale = 1; // Resume the game
     }
 
-
-
+    public void PauseSounds()
+    {
+        // Stop all audio
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.Pause();
+        }
+    }
 
     // Button functions
     public void RestartScene()
