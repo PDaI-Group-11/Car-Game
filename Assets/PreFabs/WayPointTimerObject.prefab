@@ -150,4 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5204f227a164d2a4595e5258e8668184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointOrder: 1
   timeToAdd: 5

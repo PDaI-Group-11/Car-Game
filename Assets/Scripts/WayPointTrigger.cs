@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class WayPointTrigger : MonoBehaviour
 {
-    
-    bool hasBeenUsed = false;
+    [Header("Waypoint settings")]
+    public int wayPointOrder;
     public int timeToAdd = 5;
+
+    private bool hasBeenUsed = false;
 
     Timer timer;
     ExplosionParticleHandler explosionParticleHandler;
@@ -23,15 +25,26 @@ public class WayPointTrigger : MonoBehaviour
         {
             if (!hasBeenUsed && other.CompareTag("Car") && timer.isCounting == true)
             {
-                toggleCarHasTheBomb();
-                timer.AddTime(timeToAdd);
-                hasBeenUsed = true;
-                // Notify the manager that this waypoint has been used
-                FindObjectOfType<WaypointManagerScript>().WaypointUsed(this);
+                WaypointManagerScript waypointManager = FindObjectOfType<WaypointManagerScript>();
+
+                if (waypointManager != null && waypointManager.IsNextWaypoint(this))
+                {
+                    toggleCarHasTheBomb();
+                    timer.AddTime(timeToAdd);
+                    hasBeenUsed = true;
+                    // Notify the manager that this waypoint has been used
+                    waypointManager.WaypointUsed(this);
+                }
+                else
+                {
+                    Debug.Log("Waypoint not in order. Waiting for the correct waypoint.");
+                }
             }
         }
         else
+        {
             Debug.Log("timer is null, Is timer present?");
+        }
     }
 
     private void toggleCarHasTheBomb()

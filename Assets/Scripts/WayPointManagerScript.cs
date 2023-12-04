@@ -7,10 +7,9 @@ public class WaypointManagerScript : MonoBehaviour
     public List<WayPointTrigger> waypoints = new List<WayPointTrigger>();
     public GameOverTrigger gameOverTrigger;
 
-    private void Awake()
+    private void Start()
     {
-        // Ensure all waypoints are initialized properly  // Add all of the waypoints to the waypoint list
-        waypoints.AddRange(FindObjectsOfType<WayPointTrigger>());
+        SortWaypointsBasedOnOrder();
     }
 
 
@@ -27,4 +26,20 @@ public class WaypointManagerScript : MonoBehaviour
         }
         else return false;
     }
+
+    public bool IsNextWaypoint(WayPointTrigger waypoint)
+    {
+        // Check if the specified waypoint is the next one in order
+        return waypoints.Count > 0 && waypoints[0] == waypoint;
+    }
+
+    private void SortWaypointsBasedOnOrder()
+    {
+        // Ensure all waypoints are initialized properly  
+        waypoints.AddRange(FindObjectsOfType<WayPointTrigger>());
+
+        // Sort waypoints based on the wayPointOrder property
+        waypoints.Sort((a, b) => a.wayPointOrder.CompareTo(b.wayPointOrder));
+    }
+
 }
