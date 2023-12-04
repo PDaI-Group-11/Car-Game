@@ -13,7 +13,6 @@ TagManager:
   - TrackSection
   - Obstacle
   - FinishLine
-  - GameMusic
   layers:
   - Default
   - TransparentFX
