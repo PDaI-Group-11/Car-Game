@@ -2,35 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] GameObject Healthinstaniate;
+    [SerializeField] private GameObject healthBarPrefab;
     public float maxHealth = 100;
     public float currentHealth;
+    private HealthBar healthBar;
 
     void Start()
     {
+
+        if (healthBarPrefab != null)
+        {
+            healthBar = Instantiate(healthBarPrefab).GetComponentInChildren<HealthBar>();
+        }
+        healthBar.target = transform;
         currentHealth = maxHealth;
-        HealthBarGenerator();
+        healthBar.SetMaxHealth(maxHealth);
+
+       
     }
 
-
-  public void TakeDamage(float damageAmount)
+  public void TakeDamage(float damageAmount) 
     {
         currentHealth -= damageAmount;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            Debug.Log("You dead! D:");
+        }
+        
     }
 
-    void HealthBarGenerator()
+    
+
+    public void Initialize()
     {
-        if (Healthinstaniate != null) 
-        { 
-         GameObject healthinstan = Instantiate(Healthinstaniate);
         
-        }
-        else
-        {
-            Debug.Log("Prefab not assigned to Inspector.");
-        }
+
     }
 }

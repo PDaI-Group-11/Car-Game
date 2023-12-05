@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,28 +6,31 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    Slider slider;
-    HealthManager healthManager;
-    // Start is called before the first frame update
-    void Start()
+    public Transform target;
+    public Vector2 offset;
+    [SerializeField] public Slider slider;
+    private RectTransform rectTransform;
+    private void Start()
     {
-        slider = GetComponent<Slider>();
-        healthManager = GetComponent<HealthManager>();
-        if (healthManager != null)
-        {
-            slider.maxValue = healthManager.maxHealth;
-        }
-        else
-        {
-            Debug.LogError("HealthManager not found in the parent GameObject or its ancestors.");
-        }
-        }
-        void Update()
+        rectTransform = GetComponent<RectTransform>();
+    }
+    public void SetMaxHealth(float health)
     {
-            if (slider != null && healthManager != null)
-            {
-                healthManager.currentHealth = slider.value;
-            }
+        slider.maxValue = health;
+        slider.value = health;
+        
 
+    }
+    public void SetHealth(float health)
+    {
+        slider.value = health;
+    }
+    private void LateUpdate()
+    {
+        if (target != null)
+        {
+           transform.localPosition = Camera.main.WorldToScreenPoint(target.position + (Vector3)offset);
         }
+    }
+
 }
