@@ -54,14 +54,6 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        logTimer += Time.fixedDeltaTime;
-
-        if (logTimer >= logInterval)
-        {
-            Debug.Log("Current Speed: " + carRigidbody.velocity.magnitude);
-            logTimer = 0f; // Reset the timer
-        }
-
         if (!isCarDestroyed)
         {
             ApplyEngineForce();
