@@ -25,23 +25,43 @@ public class CarController : MonoBehaviour
     public float boostDuration = 3f;
     public float boostCooldown = 5f;
     public bool isBoosting = false;
+    public bool hasBoost = false;
     public float boostCooldownTimer = 0f;
     private float boostDurationTimer = 0f;
 
+    [Header("Collectable Boost settings")]
+    public float collectableBoostForce = 4f;
+    public float collectableBoostDuration = 2.0f;
+
+
     // Oil factors
-    private float originalDriftFactor;
+    [HideInInspector]
     public bool isOnOil = false;
+    private float originalDriftFactor;
 
     Rigidbody2D carRigidbody;
+    CarSfxHandler carSfxHandler;
 
 
     void Awake()
     {
         carRigidbody = GetComponent<Rigidbody2D>();
+        carSfxHandler = GetComponent<CarSfxHandler>();
     }
+
+    private float logTimer = 0f;
+    private float logInterval = 1f; // Log every 1 second
 
     private void FixedUpdate()
     {
+        logTimer += Time.fixedDeltaTime;
+
+        if (logTimer >= logInterval)
+        {
+            Debug.Log("Current Speed: " + carRigidbody.velocity.magnitude);
+            logTimer = 0f; // Reset the timer
+        }
+
         if (!isCarDestroyed)
         {
             ApplyEngineForce();
@@ -148,35 +168,66 @@ public class CarController : MonoBehaviour
         return carRigidbody.velocity.magnitude * 3;
     }
 
-    private void StartBoost()
+
+    public void StartBoost()
     {
-        isBoosting = true;
+        if (!isBoosting && boostCooldownTimer <= 0)
+        {
+            isBoosting = true;
 
-        // Apply a boost force in the direction of the car's forward vector.
-        carRigidbody.AddForce(transform.up * boostForce, ForceMode2D.Impulse);
+            carSfxHandler.PlayBoostAudio();
 
-        // Set the boost duration and cooldown timers.
-        boostDurationTimer = boostDuration;
-        boostCooldownTimer = boostCooldown;
+            // Apply a boost force in the direction of the car's forward vector.
+            carRigidbody.AddForce(transform.up * boostForce, ForceMode2D.Impulse);
 
-        StartCoroutine(StopBoost());
+            // Set the boost duration and cooldown timers.
+            boostDurationTimer = boostDuration;
+            boostCooldownTimer = boostCooldown;
 
+            StartCoroutine(StopBoost());
+        }
     }
 
     IEnumerator StopBoost()
     {
-        yield return new WaitForSeconds(0.1f); // Delay for 1 seconds
+        yield return new WaitForSeconds(2);
         isBoosting = false;
-    }
 
-    public void HandleBoostInput()
-    {
-        // Check if the car is allowed to boost (not currently boosting and boost not on cooldown).
-        if (!isBoosting && boostCooldownTimer <= 0)
+        // Gradually slow down the car to the specified max speed
+        while (carRigidbody.velocity.magnitude > maxSpeed)
         {
-            StartBoost();
+            carRigidbody.velocity = carRigidbody.velocity.normalized * maxSpeed;
+            yield return null;
         }
     }
+
+
+    public void StartCollectableBoost()
+    {
+        hasBoost = true;
+            
+        carSfxHandler.PlayBoostAudio();
+
+        // Apply a boost force in the direction of the car's forward vector.
+        carRigidbody.AddForce(transform.up * collectableBoostForce, ForceMode2D.Impulse);
+
+        StartCoroutine(StopCollectableBoost());
+    }
+
+    IEnumerator StopCollectableBoost()
+    {
+        yield return new WaitForSeconds(collectableBoostDuration);
+
+        hasBoost = false;
+
+        // Gradually slow down the car to the specified max speed
+        while (carRigidbody.velocity.magnitude > maxSpeed)
+        {
+            carRigidbody.velocity = carRigidbody.velocity.normalized * maxSpeed;
+            yield return null;
+        }
+    }
+
 
     public void ApplySteeringEffect(float factor, float duration)
     {
@@ -196,6 +247,8 @@ public class CarController : MonoBehaviour
         driftFactor = originalDriftFactor;
         isOnOil = false;
     }
+
+
 
     public void stopTheCar()
     {

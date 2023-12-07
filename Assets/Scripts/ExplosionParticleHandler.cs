@@ -113,7 +113,7 @@ public class ExplosionParticleHandler : MonoBehaviour
 
         if (carSfxHandler != null)
         {
-            carSfxHandler.playExplosionSoundSFX();
+            carSfxHandler.PlayExplosionSoundSFX();
         }
         else Debug.Log("carSfxHandler not found");
     }

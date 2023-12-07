@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TargetIndicator : MonoBehaviour
@@ -8,6 +9,42 @@ public class TargetIndicator : MonoBehaviour
     public float HideDistance;
 
     private int currentTargetIndex = 0;
+    private SpriteRenderer arrowSpriteRender;
+
+
+    private void Start()
+    {
+        GameObject arrow = GameObject.Find("Arrow");
+        arrowSpriteRender = arrow.GetComponent<SpriteRenderer>();
+
+        if (Targets != null && Targets.Length > 0)
+        {
+            bool allTargetsSet = true;
+
+            for (int i = 0; i < Targets.Length; i++)
+            {
+                if (Targets[i] == null)
+                {
+                    Debug.Log("Target at index " + i + " is missing or null");
+                    allTargetsSet = false;
+                    break;
+                }
+            }
+
+            if (allTargetsSet)
+            {
+                arrowSpriteRender.enabled = true;
+            }
+            else
+            {
+                Debug.Log("One or more targets are missing or null");
+            }
+        }
+        else
+        {
+            Debug.Log("Targets array is null or empty");
+        }
+    }
 
     void Update()
     {

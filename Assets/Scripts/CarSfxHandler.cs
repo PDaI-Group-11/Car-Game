@@ -31,8 +31,6 @@ public class CarSfxHandler : MonoBehaviour
 
         UpdateTiresScreechingSFX();
 
-        CheckForBoostAudioSFX();
-
     }
 
 
@@ -101,15 +99,14 @@ public class CarSfxHandler : MonoBehaviour
     }
 
 
-    void CheckForBoostAudioSFX()
+
+    public void PlayBoostAudio()
     {
-        if (carController.isBoosting && !carBoostAudioSource.isPlaying)
-        {
+        if (!carBoostAudioSource.isPlaying)
             carBoostAudioSource.Play();
-        }
     }
 
-    public void playExplosionSoundSFX()
+    public void PlayExplosionSoundSFX()
     {
         // Check if the AudioSource and explosion clip are set
         if (ExplosionAudioSource != null)

@@ -51,7 +51,7 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isBoostKeyHeld == false)
         {
             isBoostKeyHeld = true;
-            carController.HandleBoostInput();
+            carController.StartBoost();
         }
         else if (Input.GetKeyUp(KeyCode.Space) && isBoostKeyHeld == true)
         {
