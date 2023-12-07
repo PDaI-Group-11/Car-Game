@@ -13,6 +13,8 @@ public class ExplosionParticleHandler : MonoBehaviour
     private ParticleSystem explosionParticles;
     private CarSfxHandler carSfxHandler;
     private GameObject car;
+    private GameObject TargetIndicator;
+    private GameObject Arrow;
     private CarController carController;
     private SpriteRenderer C4spriteRenderer;
 
@@ -76,6 +78,9 @@ public class ExplosionParticleHandler : MonoBehaviour
             // Set the flag to true to prevent repeated explosions
             hasExploded = true;
 
+            // Disable the arrow object
+            DisableArrow();
+
             DisableCar();
 
             // Destroy the car after a delay
@@ -89,6 +94,18 @@ public class ExplosionParticleHandler : MonoBehaviour
         carController.stopTheCar();
     }
 
+    private void DisableArrow()
+    {
+        TargetIndicator = GameObject.Find("TargetIndicator");
+        Arrow = GameObject.Find("Arrow");
+
+        if (TargetIndicator != null && Arrow != null)
+        {
+            TargetIndicator.SetActive(false);
+            Arrow.SetActive(false);
+        }
+        else Debug.Log("TargetIndicator or Arrow not found");
+    }
 
     void PlayExplosionSound()
     {
