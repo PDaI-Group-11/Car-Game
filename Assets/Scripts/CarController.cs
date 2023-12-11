@@ -24,9 +24,14 @@ public class CarController : MonoBehaviour
     public float boostForce = 2.5f;
     public float boostDuration = 3f;
     public float boostCooldown = 5f;
+
+    [HideInInspector]
     public bool isBoosting = false;
+    [HideInInspector]
     public bool hasBoost = false;
+    [HideInInspector]
     public float boostCooldownTimer = 0f;
+
     private float boostDurationTimer = 0f;
 
     [Header("Collectable Boost settings")]
@@ -48,9 +53,6 @@ public class CarController : MonoBehaviour
         carRigidbody = GetComponent<Rigidbody2D>();
         carSfxHandler = GetComponent<CarSfxHandler>();
     }
-
-    private float logTimer = 0f;
-    private float logInterval = 1f; // Log every 1 second
 
     private void FixedUpdate()
     {
@@ -104,6 +106,9 @@ public class CarController : MonoBehaviour
 
         rotationAngle -= steeringInput * turnFactor * minSpeedBeforeAllowTurningFactor;
         carRigidbody.MoveRotation(rotationAngle);
+
+        // If the car is rotated -90 degrees in the Inspector, add the following line:
+        carRigidbody.MoveRotation(rotationAngle - 90f);
     }
 
     public void SetInputVector(Vector2 inputVector)

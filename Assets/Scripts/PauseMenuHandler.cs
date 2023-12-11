@@ -78,7 +78,7 @@ public class PauseMenuHandler : MonoBehaviour
     public void RestartScene()
     {
         ResumeGame();
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void QuitGame()

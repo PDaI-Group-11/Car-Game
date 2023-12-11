@@ -167,13 +167,13 @@ public class GameOverTrigger : MonoBehaviour
     public void RestartScene()
     {
         ResumeGame();
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void NextScene()
     {
         ResumeGame();
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void QuitGame()

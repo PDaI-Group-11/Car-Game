@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class Timer : MonoBehaviour
 {
     [Header("Timer settings")]
-    public float initialTime = 10.0f;   // Initial time in seconds
-    public float oneStarTime = 10.0f;   // 10 seconds
-    public float twoStarTime = 8.0f;    // 8 seconds
-    public float threeStarTime = 5.0f;  // 5 seconds
-    public float initialCountDownTime = 5.0f; // 5 seconds countdown at the start
-
+    public float initialTime = 30.0f;   // Initial time in seconds
+    public float oneStarTime = 13.0f;
+    public float twoStarTime = 11.0f;
+    public float threeStarTime = 7.0f;
+    public float initialCountDownTime = 5.0f; //  seconds countdown at the start
     [HideInInspector]
     public float countdownTime;
 
     [SerializeField] TextMeshProUGUI timerText;
     float remainingTime;
+    [HideInInspector]
     public bool isCounting = false;
+
+    private TMP_Text objectiveText;
 
     GameOverTrigger gameOverTrigger;
     ExplosionParticleHandler explosionParticleHandler;
@@ -30,6 +33,16 @@ public class Timer : MonoBehaviour
         explosionParticleHandler = FindObjectOfType<ExplosionParticleHandler>();
         remainingTime = initialTime;
         countdownTime = initialCountDownTime;
+
+        objectiveText = GameObject.Find("Objective Text").GetComponent<TextMeshProUGUI>();
+        if (objectiveText == null)
+        {
+            Debug.LogError("objectiveText component not found!");
+        }
+        else {
+            Debug.Log("objectiveText enabled");
+            objectiveText.enabled = true;
+        }
     }
 
     void Update()
@@ -42,10 +55,17 @@ public class Timer : MonoBehaviour
             int seconds = Mathf.CeilToInt(countdownTime);
             timerText.text = string.Format("{0}", seconds);
 
+            
+
             isCounting = false; // During the countdown, set isCounting to false
         }
         else
         {
+            if (objectiveText.enabled == true)
+            {
+                objectiveText.enabled = false;
+            }
+
             // Timer is counting down
             remainingTime -= Time.deltaTime;
 
