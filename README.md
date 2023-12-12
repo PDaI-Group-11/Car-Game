@@ -1,5 +1,5 @@
 # Car Game
-**(TVT21SPO - Group 11)**
+**Group 11**
 
 ## Description
 

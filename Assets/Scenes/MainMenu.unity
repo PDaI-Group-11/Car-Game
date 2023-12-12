@@ -964,7 +964,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 71083057}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: ChangeToSampleScene
+        m_MethodName: ChangeToGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
