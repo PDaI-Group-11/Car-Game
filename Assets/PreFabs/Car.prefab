@@ -15578,7 +15578,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &7728635353341389830
 MonoBehaviour:
@@ -15611,7 +15611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarPrefab: {fileID: 8822572491965883493, guid: aae7270fd28f2544b8efe58569c2a49c,
     type: 3}
-  maxHealth: 30
+  maxHealth: 100
   currentHealth: 0
 --- !u!114 &5581338426701367427
 MonoBehaviour:
@@ -15625,7 +15625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc8f809cfa34d040976906636e694f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionThreshold: 0.98
+  collisionThreshold: 1.8
 --- !u!1 &5468469281869866019
 GameObject:
   m_ObjectHideFlags: 0
