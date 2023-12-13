@@ -66,13 +66,12 @@ public class HealthManager : MonoBehaviour
         if (ePF.carHasTheBomb == true)
         {
 
-            ePF.Explode();
-            Debug.Log("carhasthebomb");
-            
+            ePF.Explode(false);
+            StartCoroutine(ShowMenuAfterDeath());
+
         }
         else
-        {
-            Debug.Log("car does not have the bomb");
+        { 
             StartCoroutine(ShowMenuAfterDeath());
         }
     }

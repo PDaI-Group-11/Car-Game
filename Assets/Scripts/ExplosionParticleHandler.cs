@@ -64,9 +64,7 @@ public class ExplosionParticleHandler : MonoBehaviour
         else Debug.Log("C4spriteRenderer is null");
     }
 
-
-
-    public void Explode()
+    public void Explode(bool shouldDestroyCar = true)
     {
         
         // Check if the Particle System is assigned
@@ -87,7 +85,7 @@ public class ExplosionParticleHandler : MonoBehaviour
             DisableCar();
 
             // Destroy the car after a delay
-            
+            if (shouldDestroyCar) Destroy(car, 3f);
 
         }
     }
