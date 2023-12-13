@@ -14908,7 +14908,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.03, y: -0.46, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8868440478927234808}
@@ -15490,6 +15490,7 @@ GameObject:
   - component: {fileID: 8512418924828558257}
   - component: {fileID: 7728635353341389830}
   - component: {fileID: 1244353016941700329}
+  - component: {fileID: 5581338426701367427}
   m_Layer: 0
   m_Name: Car
   m_TagString: Car
@@ -15608,9 +15609,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9154260070fc10049b8a62718f4d1b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarPrefab: {fileID: 0}
-  maxHealth: 100
+  healthBarPrefab: {fileID: 8822572491965883493, guid: aae7270fd28f2544b8efe58569c2a49c,
+    type: 3}
+  maxHealth: 30
   currentHealth: 0
+--- !u!114 &5581338426701367427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019955702184647197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc8f809cfa34d040976906636e694f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionThreshold: 0.98
 --- !u!1 &5468469281869866019
 GameObject:
   m_ObjectHideFlags: 0
@@ -15664,7 +15679,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5104539711983909554, guid: 0ebdc093daecfaa4b81c6ed0c8d2de17, type: 3}
   HideDistance: 1
 --- !u!1 &5895662051386253062
 GameObject:
@@ -21049,7 +21064,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 825453485557917386}
@@ -21106,8 +21121,7 @@ SpriteRenderer:
   m_SortingLayerID: -1414098713
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3079434808264247364, guid: 2529f58c0f0f4784d925363eac539680,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: cbc796c570a084cffb7398c903c3ba1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -21153,8 +21167,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2.8125}
+    pivot: {x: 0.5, y: 0.28498}
+    oldSize: {x: 1.36, y: 2.15}
     newSize: {x: 2, y: 2.8125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -21162,12 +21176,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.779365, y: 1.3365759}
-      - {x: -0.82581383, y: -1.3133509}
-      - {x: 0.7909768, y: -1.3365759}
-      - {x: 0.814202, y: 0.82052517}
-      - {x: 0.7535742, y: 1.1150807}
-      - {x: 0.70081455, y: 1.3714129}
+    - - {x: 0.14013945, y: 0.61400574}
+      - {x: -0.35696647, y: 0.5977647}
+      - {x: -0.5443288, y: 0.4076113}
+      - {x: -0.5795878, y: -1.2909682}
+      - {x: -0.22586802, y: -1.5273204}
+      - {x: 0.28034228, y: -1.4774942}
+      - {x: 0.5335611, y: -1.3253828}
+      - {x: 0.5406445, y: -0.6161069}
+      - {x: 0.5408988, y: 0.3702307}
+      - {x: 0.540167, y: 0.4623982}
+      - {x: 0.546665, y: 0.4939177}
+      - {x: 0.36504486, y: 0.5879503}
   m_UseDelaunayMesh: 0
 --- !u!1 &7253179465820732694
 GameObject:

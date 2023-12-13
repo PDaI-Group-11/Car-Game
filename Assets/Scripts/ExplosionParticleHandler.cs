@@ -17,11 +17,13 @@ public class ExplosionParticleHandler : MonoBehaviour
     private GameObject Arrow;
     private CarController carController;
     private SpriteRenderer C4spriteRenderer;
+    HealthManager healthManager;
 
 
     // Start is called before the first frame update
     void Awake()
     {
+        healthManager = GetComponent<HealthManager>();
         ExplosionAudioSource = GetComponent<AudioSource>();
         explosionParticles = GetComponent<ParticleSystem>();
         carSfxHandler = FindObjectOfType<CarSfxHandler>();
@@ -66,8 +68,9 @@ public class ExplosionParticleHandler : MonoBehaviour
 
     public void Explode()
     {
+        
         // Check if the Particle System is assigned
-        if (explosionParticles != null && !hasExploded && carHasTheBomb)
+        if (explosionParticles != null && !hasExploded && carHasTheBomb )
         {
             // Play the explosion particle effect
             explosionParticles.Play();
@@ -84,7 +87,7 @@ public class ExplosionParticleHandler : MonoBehaviour
             DisableCar();
 
             // Destroy the car after a delay
-            Destroy(car, 3f);
+            
 
         }
     }

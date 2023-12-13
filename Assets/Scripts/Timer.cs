@@ -81,6 +81,7 @@ public class Timer : MonoBehaviour
                     Invoke("ShowMenu", 3f);
                 }
                 else ShowMenu();
+                
 
 
 
@@ -98,6 +99,7 @@ public class Timer : MonoBehaviour
 
     private void ShowMenu()
     {
+        Debug.Log("Show Menu did something.");
         if (gameOverTrigger != null)
         {
             gameOverTrigger.DisplayMenu();

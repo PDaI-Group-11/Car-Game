@@ -19,8 +19,6 @@ public class CarCollision : MonoBehaviour
         // Check if the collision is with the car object
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Collision toimii?");
-            healthManager.TakeDamage(10);
             // Check the velocity of the car using its Rigidbody component
             float velocityMagnitude = rb.velocity.magnitude;
             // If the velocity is above the threshold, destroy the car object

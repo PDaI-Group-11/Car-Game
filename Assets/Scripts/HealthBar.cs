@@ -29,7 +29,7 @@ public class HealthBar : MonoBehaviour
     {
         if (target != null)
         {
-           transform.localPosition = Camera.main.WorldToScreenPoint(target.position + (Vector3)offset);
+         transform.localPosition  = Camera.main.WorldToScreenPoint(target.position + (Vector3)offset);
         }
     }
 

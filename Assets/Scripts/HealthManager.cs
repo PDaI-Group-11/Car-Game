@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class HealthManager : MonoBehaviour
 {
@@ -10,9 +13,25 @@ public class HealthManager : MonoBehaviour
     public float maxHealth = 100;
     public float currentHealth;
     private HealthBar healthBar;
+    ExplosionParticleHandler ePF;
+    GameOverTrigger gameOverTrigger;
+    Timer timer;
 
     void Start()
     {
+        timer = FindAnyObjectByType<Timer>();
+        if (ePF == null )
+        {
+            ePF = FindAnyObjectByType<ExplosionParticleHandler>();
+        }
+        else Debug.Log("Epf not found");
+        gameOverTrigger = FindObjectOfType<GameOverTrigger>();
+        if (gameOverTrigger == null)
+        {
+            Debug.Log("GameOvTRigg not found");
+        }
+        
+
 
         if (healthBarPrefab != null)
         {
@@ -21,6 +40,7 @@ public class HealthManager : MonoBehaviour
         healthBar.target = transform;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
 
        
     }
@@ -31,16 +51,50 @@ public class HealthManager : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {
-            Debug.Log("You dead! D:");
+            PlayerDeath();
         }
-        
+        }
+    public void AddHealth(float healthAmount)
+    {
+        currentHealth += healthAmount;
+        healthBar.SetHealth(currentHealth);
     }
 
-    
+    public void PlayerDeath()
+    {
+        
+        if (ePF.carHasTheBomb == true)
+        {
+
+            ePF.Explode();
+            Debug.Log("carhasthebomb");
+            
+        }
+        else
+        {
+            Debug.Log("car does not have the bomb");
+            StartCoroutine(ShowMenuAfterDeath());
+        }
+    }
+
 
     public void Initialize()
     {
-        
+       
 
+
+    }
+    public IEnumerator ShowMenuAfterDeath()
+    {
+        timer.isCounting = false;
+        Debug.Log("Coroutine Entered.");
+        yield return new WaitForSeconds(3);
+        Debug.Log("ShowMenu Method Works!");
+        if (gameOverTrigger != null)
+        {
+            gameOverTrigger.DisplayMenu();
+        }
+        else Debug.Log("gameOverTrigger = null, Is gameOverCanvas present?");
+        Destroy(gameObject);
     }
 }
