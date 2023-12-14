@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3648899498765583659}
   - component: {fileID: 8027893030577473703}
   - component: {fileID: 6312846865749103682}
-  m_Layer: 4
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 7243050202649057537}
   - component: {fileID: 6457620293458659951}
   - component: {fileID: 2515373788403223983}
-  m_Layer: 4
+  m_Layer: 5
   m_Name: Greenslider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4284198420707241723}
-  m_Layer: 4
+  m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,8 +211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -697, y: -479}
-  m_SizeDelta: {x: -1474.1501, y: -1035.7367}
+  m_AnchoredPosition: {x: -649, y: -468}
+  m_SizeDelta: {x: -1344.0782, y: -1035.7367}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8822572491965883493
 GameObject:
@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4774864541116938174}
   - component: {fileID: 6212613683583112549}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 7208085788838401419}
   - component: {fileID: 3620304741421092583}
   - component: {fileID: 8277402792454532326}
-  m_Layer: 4
+  m_Layer: 5
   m_Name: RedSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
