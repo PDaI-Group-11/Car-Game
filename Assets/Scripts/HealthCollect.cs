@@ -14,7 +14,6 @@ public class HealthCollect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-          Debug.Log("Added Health");
           healthManager.AddHealth(10);
           Destroy(gameObject);     
     }

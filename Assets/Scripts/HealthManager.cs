@@ -71,8 +71,8 @@ public class HealthManager : MonoBehaviour
 
         }
         else
-        { 
-            StartCoroutine(ShowMenuAfterDeath());
+        {
+            ShowMenu();
         }
     }
 
@@ -86,14 +86,21 @@ public class HealthManager : MonoBehaviour
     public IEnumerator ShowMenuAfterDeath()
     {
         timer.isCounting = false;
-        Debug.Log("Coroutine Entered.");
         yield return new WaitForSeconds(3);
-        Debug.Log("ShowMenu Method Works!");
         if (gameOverTrigger != null)
         {
             gameOverTrigger.DisplayMenu();
         }
         else Debug.Log("gameOverTrigger = null, Is gameOverCanvas present?");
         Destroy(gameObject);
+    }
+
+    private void ShowMenu()
+    {
+        if (gameOverTrigger != null)
+        {
+            gameOverTrigger.DisplayMenu();
+        }
+        else Debug.Log("gameOverTrigger = null, Is gameOverCanvas present?");
     }
 }
