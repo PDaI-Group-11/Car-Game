@@ -30,6 +30,9 @@ public class HealthManager : MonoBehaviour
         {
             Debug.Log("GameOvTRigg not found");
         }
+        
+
+
         if (healthBarPrefab != null)
         {
             healthBar = Instantiate(healthBarPrefab).GetComponentInChildren<HealthBar>();
@@ -37,6 +40,9 @@ public class HealthManager : MonoBehaviour
         healthBar.target = transform;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+
+       
     }
 
   public void TakeDamage(float damageAmount) 
@@ -47,7 +53,7 @@ public class HealthManager : MonoBehaviour
         {
             PlayerDeath();
         }
-    }
+        }
     public void AddHealth(float healthAmount)
     {
         currentHealth += healthAmount;
@@ -65,10 +71,11 @@ public class HealthManager : MonoBehaviour
 
         }
         else
-        {
-            ShowMenu();
+        { 
+            StartCoroutine(ShowMenuAfterDeath());
         }
     }
+
 
     public void Initialize()
     {
@@ -76,7 +83,6 @@ public class HealthManager : MonoBehaviour
 
 
     }
-
     public IEnumerator ShowMenuAfterDeath()
     {
         timer.isCounting = false;
@@ -89,13 +95,5 @@ public class HealthManager : MonoBehaviour
         }
         else Debug.Log("gameOverTrigger = null, Is gameOverCanvas present?");
         Destroy(gameObject);
-    }
-    private void ShowMenu()
-    {
-        if (gameOverTrigger != null)
-        {
-            gameOverTrigger.DisplayMenu();
-        }
-        else Debug.Log("gameOverTrigger = null, Is gameOverCanvas present?");
     }
 }

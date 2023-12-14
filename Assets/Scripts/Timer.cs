@@ -40,6 +40,7 @@ public class Timer : MonoBehaviour
             Debug.LogError("objectiveText component not found!");
         }
         else {
+            Debug.Log("objectiveText enabled");
             objectiveText.enabled = true;
         }
     }
@@ -98,6 +99,7 @@ public class Timer : MonoBehaviour
 
     private void ShowMenu()
     {
+        Debug.Log("Show Menu did something.");
         if (gameOverTrigger != null)
         {
             gameOverTrigger.DisplayMenu();
