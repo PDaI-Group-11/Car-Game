@@ -8,7 +8,7 @@ public class WheelParticleHandler : MonoBehaviour
 
     CarController carController;
     //ParticleSystem particleSystem;
-    new ParticleSystem particleSystem;
+    ParticleSystem particleSystem;
     ParticleSystem.EmissionModule emissionModule;
 
     private void Awake()

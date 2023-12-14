@@ -8,7 +8,7 @@ public class BoostParticleSystemHandler : MonoBehaviour
 
 
     CarController carController;
-    new ParticleSystem particleSystem;
+    ParticleSystem particleSystem;
     ParticleSystem.EmissionModule emissionModule;
 
 

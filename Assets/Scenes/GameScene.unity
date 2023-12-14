@@ -736,11 +736,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1244353016941700329, guid: 5a0399d62424a6d48826cf3e5e5e549f,
-        type: 3}
-      propertyPath: maxHealth
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 4269447920505833268, guid: 5a0399d62424a6d48826cf3e5e5e549f,
         type: 3}
       propertyPath: Targets.Array.data[0]
@@ -1226,11 +1221,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7117269025989240105, guid: 5c521edbd20a6e7439a5cf99d3ab595a,
-        type: 3}
-      propertyPath: initialTime
-      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8333028613674092940, guid: 5c521edbd20a6e7439a5cf99d3ab595a,
         type: 3}

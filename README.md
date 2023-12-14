@@ -1,4 +1,4 @@
-# Car Game
+<# Car Game
 **Group 11**
 
 ## Description
@@ -39,7 +39,7 @@ Welcome to **The Car Game**, a thrilling 2D top-down racing experience where you
      ```
 
 2. **Run the Game:**
-   - Execute the `CarGame.exe` file located in the project folder to play the game.
+   - Execute the `Car Game.exe` located in the **\Game** folder to play the game.
 
 ## Controls
 
