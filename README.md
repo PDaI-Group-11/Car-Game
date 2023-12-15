@@ -1,4 +1,4 @@
-<# Car Game
+# Car Game
 **Group 11**
 
 ## Description
@@ -12,6 +12,7 @@ Welcome to **The Car Game**, a thrilling 2D top-down racing experience where you
 - [Features](#features)
 - [License](#license)
 - [Credits](#credits)
+- [Demo](#demo)
 
 ## Getting Started
 
@@ -80,3 +81,6 @@ This project is licensed under the open-source MIT License terms.
 - **[Onni Nurkkala](https://github.com/OnniNurkkala)**
 - **[Samuel Koistinen](https://github.com/SamuelKoistinen)**
 - **[Zigi Li](https://github.com/ZiqiLi28)**
+
+## Demo
+**[Link to the demo](https://www.youtube.com/watch?v=g22Fks__bvk)**
