@@ -83,4 +83,4 @@ This project is licensed under the open-source MIT License terms.
 - **[Zigi Li](https://github.com/ZiqiLi28)**
 
 ## Demo
-**[Link to the demo](https://www.youtube.com/watch?v=g22Fks__bvk)**
+**[Link to the demo](https://youtu.be/wIVl9zuhcPQ)**
