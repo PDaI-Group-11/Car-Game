@@ -80,7 +80,7 @@ This project is licensed under the open-source MIT License terms.
 ### Development Team
 - **[Onni Nurkkala](https://github.com/OnniNurkkala)**
 - **[Samuel Koistinen](https://github.com/SamuelKoistinen)**
-- **[Zigi Li](https://github.com/ZiqiLi28)**
+- **[Ziqi Li](https://github.com/ZiqiLi28)**
 
 ## Demo
 **[Link to the demo](https://youtu.be/wIVl9zuhcPQ)**
